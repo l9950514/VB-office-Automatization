@@ -1,0 +1,23 @@
+Private Sub reserve(t() As String)
+Dim temp1 As String, temp2 As String
+Dim s() As String
+Dim n As Integer
+Dim m As Integer
+Dim lenth As Integer
+lenth = UBound(t) - LBound(t) + 1
+n = 0
+For i = 0 To lenth - 1
+If t(i) <> "" Then
+n = n + 1
+End If
+Next i
+ReDim s(n)
+m = 0
+For i = n - 1 To 0 Step -1
+s(m) = t(i)
+m = m + 1
+Next i
+For i = 0 To n - 1
+t(i) = s(i)
+Next
+End Sub
