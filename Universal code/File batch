@@ -1,0 +1,14 @@
+Dim myPath$, myFile$, ak As Workbook ‘myPath is the file path，myFile is the file name
+Application.ScreenUpdating = False 'Freeze Screen for keep the screen shake 
+myPath = ThisWorkbook.Sheets("Sheet1").Cells(3, 3).Value 'In this, input your path,which is the folder saving your files
+myFile = Dir(myPath & "*.xlsx") 'In turn look for *.xlsx files.
+Do While myFile <> "" 'when the files have exist in the folder,star loops (If the file can't be found, return "")
+If myFile <> ThisWorkbook.Name Then
+Set ak = Workbooks.Open(myPath & myFile) 'Exclude this openning Excel
+End If
+'Insert your code you want to do 
+ak.Save
+ak.Close '
+myFile = Dir 'Look for next *.xlsx file.
+Loop
+Application.ScreenUpdating = True 'Unfreeze screen
