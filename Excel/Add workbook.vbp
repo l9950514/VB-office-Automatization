@@ -1,0 +1,3 @@
+Dim A as workbook
+Set A = workbooks.Add
+A.Saveas path ‘save as the path
