@@ -1,0 +1,8 @@
+Dim s as string
+Dim i as Integer
+Dim ob as string
+For i = 1 To Len(s)
+If Mid(s, i, 1) <> "%" Then
+ob = ob & Mid(s, i, 1)
+End If
+Val(ob)
