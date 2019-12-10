@@ -1,0 +1,32 @@
+### First version
+
+Private Sub change(ak As Workbook)
+Dim n,m,i As Integer ‘Counter
+Dim control() ,number() As Integer
+ak.Sheets("Sheet2").Range("A1:IV65536").Clear 
+'Define the range
+ReDim control(ak.Sheets("Sheet1").UsedRange.Rows.Count)
+ReDim number(ak.Sheets("Sheet1").UsedRange.Rows.Count)
+'Copy the first column of child nodes to the new table
+For i = 1 To ak.Sheets("Sheet1").UsedRange.Rows.Count
+ak.Sheets("Sheet2").Cells(i, 1) = ak.Sheets("Sheet1").Cells(i, 1)
+control(i) = ak.Sheets("Sheet1").Cells(i, 12)
+Next i
+m = 1
+Do
+For i = 1 To ak.Sheets("Sheet2").UsedRange.Rows.Count
+   For n = 1 To ak.Sheets("Sheet1").UsedRange.Rows.Count
+   'Is the last row?
+      If ak.Sheets("Sheet2").Cells(i, m).Value = "" Then
+         Exit For
+      End If
+      'Find the first column of father node in the new sheet
+      If ak.Sheets("Sheet2").Cells(i, m).Value = ak.Sheets("Sheet1").Cells(n, 1).Value Then
+         ak.Sheets("Sheet2").Cells(i, m + 1).Value = ak.Sheets("Sheet1").Cells(n, 4).Value
+         control(i) = control(i) * ak.Sheets("Sheet1").Cells(n, 12).Value
+      End If
+   Next n
+Next i
+m = m + 1
+Loop While Application.CountA(ak.Sheets("Sheet2").Columns(m)) <> 0
+End Sub
