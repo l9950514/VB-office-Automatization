@@ -1,0 +1,6 @@
+Dim A as workbook
+Set A = workbooks（"A”）
+For i = 2 To A.Sheets("1").UsedRange.Rows.Count
+‘Inset your code you want to do
+
+Next i
