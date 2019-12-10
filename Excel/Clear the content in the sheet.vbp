@@ -1,0 +1,1 @@
+ak.Sheets("A").Range("A1:IV65536").Clear
